@@ -6,5 +6,6 @@ Here's how to run the application:
 2. docker compose build
 3. docker compose up
 
-Now go to localhost:5001/
-Enter a JSON input. Refresh the page, and you can see the event delivery status.
+* Now go to localhost:5001/
+* Enter a JSON input.
+* Refresh the page, and you can see the event delivery status.
