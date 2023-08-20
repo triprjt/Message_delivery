@@ -1,5 +1,5 @@
 # Message_delivery
-This application is the solution of the problem statement given here: (Link)[https://drive.google.com/file/d/1-gQ2dAOLiBTQFSwlybGYOLypyOcHAr4I/view?usp=sharing]
+This application is the solution of the problem statement given here: [Link](https://drive.google.com/file/d/1-gQ2dAOLiBTQFSwlybGYOLypyOcHAr4I/view?usp=sharing)
 
 Here's how to run the application:
 1. git clone git@github.com:triprjt/Message_delivery.git
