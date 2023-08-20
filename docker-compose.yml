@@ -1,0 +1,37 @@
+version: '3'
+services:
+  redis:
+    image: 'redis:latest'
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - '6379:6379'
+
+  ingesting_service:
+    build:
+      context: ./server/
+    ports:
+      - '5001:5001'
+    environment:
+      - REDIS_HOST=redis   # Use the service name
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+    volumes:
+      - ./data:/app/data  # Mount the events.db file
+
+  delivery_service:
+    build:
+      context: ./delivery/  # Replace with the path to your delivery_worker files
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MAX_RETRIES=3
+      - RETRY_DELAY=2
+      - RETRY_BACKOFF_FACTOR=2
+      - NUMBER_OF_THREADS=3
+    depends_on:
+      - redis
+    volumes:
+      - ./data:/app/data  # Mount the events.db file

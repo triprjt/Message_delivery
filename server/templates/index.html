@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="#" />
+    <title>Event Delivery system</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid black; /* Add border to the table */
+      }
+      th,
+      td {
+        border: 1px solid black; /* Add border to table cells */
+        padding: 8px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Input event details</h1>
+      <form id="eventForm">
+        <div>
+          <label for="jsonInput">Input JSON:</label>
+          <textarea
+            id="jsonInput"
+            name="jsonInput"
+            rows="10"
+            cols="50"
+            value=""
+            required
+          ></textarea>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+
+      <div id="responseStatusDiv" style="margin-top: 20px"></div>
+      <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </div>
+
+    <div style="margin-top: 40px">
+      <h1>Event Delivery List</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Event ID</th>
+            <th>User ID</th>
+            <th>Payload</th>
+            <th>Destination Name</th>
+            <th>Source</th>
+            <th>Retry Attempts</th>
+            <th>Processing Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for event in events %}
+          <tr>
+            <td>{{ event.event_id }}</td>
+            <td>{{ event.user_id }}</td>
+            <td>{{ event.payload }}</td>
+            <td>{{ event.destination_name }}</td>
+            <td>{{ event.source }}</td>
+            <td>{{ event.retry_attempts }}</td>
+            <td>{{ event.processing_status }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
